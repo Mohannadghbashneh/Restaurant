@@ -4,11 +4,13 @@ let formEl=document.getElementById('form');
 let submit=document.getElementById("sumbit");
 let table=document.getElementById('table');
 var val=0;
+const allFood=[];
 function Finfo(val,name,type,price) {
     this.Id = val;
     this.Name = name;
     this.type= type;
     this.price = price;
+    allFood.push(this);
 this.render();
    }
 Finfo.prototype.render=function(){
@@ -38,6 +40,7 @@ Finfo.prototype.render=function(){
 Finfo.Id;
 formEl.addEventListener('submit',handleSumbit);
 function handleSumbit(event){
+
   event.preventDefault();
 
 let id=uniqueId();
@@ -45,6 +48,7 @@ let name =event.target.fname.value;
 let type=event.target.food.value;
 let price=event.target.Price.value+"jd";
 const newDrink=new Finfo(id,name,type,price);
+saveData(allFood);
 }
 
 function uniqueId(){
@@ -53,4 +57,26 @@ function uniqueId(){
 }
 
 
+function saveData(data){
+  let stringObj=JSON.stringify(data)
+  localStorage.setItem("food",stringObj);
+}
 
+function getData(){
+  let retrievedData=localStorage.getItem("food");
+  console.log(retrievedData);
+  let arrayData=JSON.parse(retrievedData);
+  confirm.localStorage(arrayData);
+  for(let i=0;i<arrayData.length;i++){
+    new food(
+      arrayData[i].val,
+      arrayData[i].name,
+      arrayData[i].type,
+      arrayData[i].price,
+
+    );
+  }
+  for(let i=0;i<arrayData.length;i++){
+    arrayData[i].render();}
+}
+getData();
