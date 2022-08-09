@@ -1,26 +1,27 @@
-var counter=0;
-function Finfo(foodId,foodName,type,price) {
-    this.foodId = foodId;
-    this.foodName = foodName;
+
+"use strict";
+let formEl=document.getElementById('form');
+let submit=document.getElementById("sumbit");
+let table=document.getElementById('table');
+var val=0;
+function Finfo(val,name,type,price) {
+    this.Id = val;
+    this.Name = name;
     this.type= type;
     this.price = price;
 this.render();
-           
-  
-
-  }
-
+   }
 Finfo.prototype.render=function(){
 
   let newRow=document.createElement('tr');
   table.appendChild(newRow);
   
   let newId=document.createElement('td');
-  newId.textContent=this.foodId;
+  newId.textContent=this.Id;
   newRow.appendChild(newId);
 
   let newName=document.createElement('td');
-  newName.textContent=this.foodName;
+  newName.textContent=this.Name;
   newRow.appendChild(newName);
 
   let newType=document.createElement('td');
@@ -31,37 +32,24 @@ Finfo.prototype.render=function(){
   newPrice.textContent=this.price ;
   newRow.appendChild(newPrice);
 
-  newRow.classList.add('row')
-
-//   const divEl=document.createElement('div');
-//   form.appendChild(divEl);
-
-//   const pE1=document.createElement('p');
-// pE1.textContent=`Food ID :${this.foodId} Food Name :${this.foodName}Food Type:${this.type}Food Price:${this.price}`; 
-
-// divEl.appendChild(pE1);
-
+  newRow.classList.add('row');
 }
-let formEl=document.getElementById('form');
+
+Finfo.Id;
 formEl.addEventListener('submit',handleSumbit);
 function handleSumbit(event){
   event.preventDefault();
-// console.log(event);
+
 let id=uniqueId();
-let name =event.target.fname.value+ "        ";
-let type=event.target.food.value+"        ";
+let name =event.target.fname.value;
+let type=event.target.food.value;
 let price=event.target.Price.value+"jd";
-
-console.log(name,type,price);
-
-
-let newDrink=new Finfo(id,name,type,price);
-newDrink.printMenu();
+const newDrink=new Finfo(id,name,type,price);
 }
 
 function uniqueId(){
   val=Math.floor(1000+Math.random()*9000);
-  return val
+  return val;
 }
 
 
