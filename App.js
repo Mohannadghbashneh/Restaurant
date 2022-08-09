@@ -1,26 +1,27 @@
 
-function Finfo(foodId,foodName,type,price) {
-    this.foodId = foodId;
-    this.foodName = foodName;
+"use strict";
+let formEl=document.getElementById('form');
+let submit=document.getElementById("sumbit");
+let table=document.getElementById('table');
+var val=0;
+function Finfo(val,name,type,price) {
+    this.Id = val;
+    this.Name = name;
     this.type= type;
     this.price = price;
 this.render();
-           
-  
-
-  }
-
+   }
 Finfo.prototype.render=function(){
 
   let newRow=document.createElement('tr');
   table.appendChild(newRow);
   
   let newId=document.createElement('td');
-  newId.textContent=this.foodId;
+  newId.textContent=this.Id;
   newRow.appendChild(newId);
 
   let newName=document.createElement('td');
-  newName.textContent=this.foodName;
+  newName.textContent=this.Name;
   newRow.appendChild(newName);
 
   let newType=document.createElement('td');
@@ -33,7 +34,8 @@ Finfo.prototype.render=function(){
 
   newRow.classList.add('row');
 }
-let formEl=document.getElementById('form');
+
+Finfo.Id;
 formEl.addEventListener('submit',handleSumbit);
 function handleSumbit(event){
   event.preventDefault();
@@ -47,7 +49,7 @@ const newDrink=new Finfo(id,name,type,price);
 
 function uniqueId(){
   val=Math.floor(1000+Math.random()*9000);
-  return val
+  return val;
 }
 
 
