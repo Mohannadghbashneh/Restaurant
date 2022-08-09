@@ -1,4 +1,4 @@
-var counter=0;
+
 function Finfo(foodId,foodName,type,price) {
     this.foodId = foodId;
     this.foodName = foodName;
@@ -42,12 +42,7 @@ let id=uniqueId();
 let name =event.target.fname.value;
 let type=event.target.food.value;
 let price=event.target.Price.value+"jd";
-
-console.log(name,type,price);
-
-
-let newDrink=new Finfo(id,name,type,price);
-newDrink.printMenu();
+const newDrink=new Finfo(id,name,type,price);
 }
 
 function uniqueId(){
