@@ -43,7 +43,7 @@ function handleSumbit(event){
 let id=uniqueId();
 let name =event.target.fname.value;
 let type=event.target.food.value;
-let price=event.target.Price.value+"jd";
+let price=event.target.Price.value;
 const newDrink=new Finfo(id,name,type,price);
 }
 
