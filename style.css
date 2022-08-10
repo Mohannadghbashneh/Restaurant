@@ -2,3 +2,25 @@ body{
       background-image: url("https://img.freepik.com/premium-photo/citrus-fruits-leaves-white-background-space-text_185193-9881.jpg?w=2000");
       background-color: #cccccc;
        }
+
+
+       header {
+            font-weight: bold;
+            position: fixed;
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(60, 193, 216, 0.6);
+            left: 0;
+            top: 0;
+            }
+        a {
+            text-decoration: none;
+            text-transform: capitalize;
+            }
+        .header-logo {
+            width: 120px;
+            margin-left: 10px ;
+            
+        }
