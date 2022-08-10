@@ -1,82 +1,51 @@
+'use strict';
+let allOrder=[];
 
-"use strict";
-let formEl=document.getElementById('form');
-let submit=document.getElementById("sumbit");
-let table=document.getElementById('table');
-var val=0;
-const allFood=[];
-function Finfo(val,name,type,price) {
-    this.Id = val;
-    this.Name = name;
-    this.type= type;
-    this.price = price;
-    allFood.push(this);
-this.render();
-   }
-Finfo.prototype.render=function(){
-
-  let newRow=document.createElement('tr');
-  table.appendChild(newRow);
-  
-  let newId=document.createElement('td');
-  newId.textContent=this.Id;
-  newRow.appendChild(newId);
-
-  let newName=document.createElement('td');
-  newName.textContent=this.Name;
-  newRow.appendChild(newName);
-
-  let newType=document.createElement('td');
-  newType.textContent=this.type;
-  newRow.appendChild(newType);
-
-  let newPrice=document.createElement('td');
-  newPrice.textContent=this.price ;
-  newRow.appendChild(newPrice);
-
-  newRow.classList.add('row');
+let id=0;
+function Order(foodId,foodName,type,price){
+    this.foodId=foodId;
+    this.foodName=foodName;
+    this.type=type;
+    this.price=price;
+    allOrder.push(this);
 }
-
-Finfo.Id;
-formEl.addEventListener('submit',handleSumbit);
-function handleSumbit(event){
-
-  event.preventDefault();
-
-let id=uniqueId();
-let name =event.target.fname.value;
-let type=event.target.food.value;
-let price=event.target.Price.value+"jd";
-const newDrink=new Finfo(id,name,type,price);
-saveData(allFood);
-}
-
-function uniqueId(){
-  val=Math.floor(1000+Math.random()*9000);
+var val=0
+function uniqueID(){
+// Order.prototype.uniqueID=function (counter){
+   val=Math.floor(1000+Math.random()*9000);
   return val;
+  // const num=counter+1;
+    // const str = num.toString();
+    // const ans = str.padStart(4, '0');
+    // this.foodId=ans
+    // ++id
+}
+
+console.log("before ",allOrder)
+let befor =localStorage.getItem("form");
+let beforRefeshing=JSON.parse(befor);
+console.log("beforerefehing",beforRefeshing)
+if(beforRefeshing!=null){
+  allOrder=beforRefeshing;
+}else {
+  allOrder=[];
 }
 
 
-function saveData(data){
-  let stringObj=JSON.stringify(data)
-  localStorage.setItem("food",stringObj);
+console.log("after ",allOrder)
+let form=document.getElementById('form');
+form.addEventListener('submit',handleSubmit);
+function handleSubmit(event){
+    event.preventDefault(event);
+    let foodName=event.target.name.value;
+    let type=event.target.options.value;
+    let price=event.target.price.value;
+    let id=uniqueID();
+    const newForm= new Order(foodName,type,price);
+    // newForm.uniqueID(id)
+    saveData(allOrder);
 }
-
-function getData(){
-  let retrievedData=localStorage.getItem("food");
-  console.log(retrievedData);
-  let arrayData=JSON.parse(retrievedData);
-  confirm.localStorage(arrayData);
-  for(let i=0;i<arrayData.length;i++){
-    new food(
-      arrayData[i].val,
-      arrayData[i].name,
-      arrayData[i].type,
-      arrayData[i].price,
-
-    );
-  }
-  for(let i=0;i<arrayData.length;i++){
-    arrayData[i].render();}
+function saveData(order) {
+  let stringObj = JSON.stringify(order);
+  localStorage.setItem("form", stringObj);
 }
-getData();
